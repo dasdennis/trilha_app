@@ -39,6 +39,8 @@ gem "rgeo" # Geospatial data types for Active Record
 gem "geocoder", "~> 1.8" # Geocoding for Rails
 gem "overpass-api-ruby" # wrapper Ruby to Overpass API (OSM)
 
+gem "dotenv-rails", groups: [ :development, :test ]
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
