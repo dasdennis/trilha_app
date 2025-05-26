@@ -36,8 +36,11 @@ gem "bootsnap", require: false
 
 gem "activerecord-postgis-adapter" # PostGIS adapter for Active Record
 gem "rgeo" # Geospatial data types for Active Record
+gem "rgeo-geojson"
 gem "geocoder", "~> 1.8" # Geocoding for Rails
 gem "overpass-api-ruby" # wrapper Ruby to Overpass API (OSM)
+gem "mapbox-gl-rails" # Mapbox GL JS for Rails
+gem "redis-rails" # Redis support for Rails
 
 gem "dotenv-rails", groups: [ :development, :test ]
 
