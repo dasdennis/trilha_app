@@ -1,0 +1,10 @@
+<%= mapbox_gl_include_tag %>
+<div id="map" style="height: 600px;"></div>
+
+<script>
+  mapboxgl.accessToken = '<%= Rails.application.credentials.mapbox[:access_token] %>';
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/outdoors-v12',
+  });
+</script>
