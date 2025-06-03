@@ -23,3 +23,9 @@ Rails.application.routes.draw do
   # Root path for the application
   root "trails#index"
 end
+
+# TODO:
+# - Add authz/authn for import and mapbox_proxy.
+# - Add rate limiting to mapbox_proxy.
+# - Review PWA endpoints for security.
+# - Harden health check for prod.
