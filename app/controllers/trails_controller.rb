@@ -67,3 +67,6 @@ class TrailsController < ApplicationController
     render json: { error: "Import failed" }, status: :internal_server_error
   end
 end
+
+# To Do:
+# Replace current_user&.admin? when add authentication and authorization for import and proxy actions.
