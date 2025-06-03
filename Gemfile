@@ -41,6 +41,7 @@ gem "geocoder", "~> 1.8" # Geocoding for Rails
 gem "overpass-api-ruby" # wrapper Ruby to Overpass API (OSM)
 gem "mapbox-gl-rails" # Mapbox GL JS for Rails
 gem "redis-rails" # Redis support for Rails
+gem "rack-attack" # Rack middleware for rate limiting and throttling
 
 gem "dotenv-rails", groups: [ :development, :test ]
 
