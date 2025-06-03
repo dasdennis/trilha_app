@@ -48,4 +48,22 @@ class TrailsController < ApplicationController
 
     url
   end
+
+  def import
+    # unless current_user&.admin?
+    #   return head :forbidden
+    # end
+
+    bbox = params[:bbox].to_s
+    # Simple bbox validation: four comma-separated floats
+    unless bbox.match?(/\A-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?\z/)
+      return render json: { error: "Invalid bbox format" }, status: :bad_request
+    end
+
+    OverpassService.fetch_trails(bbox)
+    render json: { status: "Import started" }, status: :accepted
+  rescue => e
+    Rails.logger.error("Import failed: #{e.class} - #{e.message}")
+    render json: { error: "Import failed" }, status: :internal_server_error
+  end
 end
