@@ -10,5 +10,16 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  # Trails resource: only index and import (POST) actions
+  resources :trails, only: [ :index ] do
+    collection do
+      post :import # Secure: should be protected by authentication/authorization
+    end
+  end
+
+  # Mapbox proxy endpoint (should be protected by rate limiting)
+  get "api/mapbox_proxy", to: "trails#proxy_mapbox"
+
+  # Root path for the application
+  root "trails#index"
 end
