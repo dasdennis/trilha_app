@@ -1,0 +1,24 @@
+<%# Only render Mapbox token meta tag if present %>
+<% if Rails.application.credentials.mapbox_token.present? %>
+  <meta name="mapbox-token" content="<%= Rails.application.credentials.mapbox_token %>">
+<% end %>
+
+<main>
+  <section>
+    <div data-controller="map" id="map" style="height: 90vh; width: 100%;" aria-label="Map"></div>
+  </section>
+
+  <section>
+    <%= form_with url: import_trails_path, method: :post, authenticity_token: true, local: true, html: { novalidate: true, role: "form", "aria-label": "Import Trails" } do |f| %>
+      <div>
+        <%= f.label :bbox, "Bounding Box (min_lon,min_lat,max_lon,max_lat):" %>
+        <%= f.text_field :bbox, placeholder: "-43.5,-22.9,-43.2,-22.8", pattern: "-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?,-?\d+(\.\d+)?", required: true, "aria-required": "true" %>
+        <small>Format: min_lon,min_lat,max_lon,max_lat</small>
+      </div>
+      <% if flash[:error] %>
+        <div class="error" role="alert"><%= flash[:error] %></div>
+      <% end %>
+      <%= f.submit "Import Trails" %>
+    <% end %>
+  </section>
+</main>
